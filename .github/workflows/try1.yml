@@ -1,5 +1,5 @@
 name: YARA Scan
-
+ 
 on:
   push:
     branches:
