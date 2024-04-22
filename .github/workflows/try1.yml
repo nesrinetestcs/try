@@ -1,20 +1,27 @@
-name: YARA Check
+name: YARA Scan
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  yara-check:
+  yara-scan:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
+    - name: Install YARA
+      run: sudo apt-get install yara
+
     - name: Run YARA scan
-      uses: docker://yara/yara:latest
-      with:
-        args: |
-          yara -r contains_yes_rule.yar .
+      run: yara -r try1.yar 
+
     - name: Display result
       run: echo "yey"
       if: success()
