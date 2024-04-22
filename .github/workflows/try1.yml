@@ -1,0 +1,20 @@
+name: YARA Check
+
+on: [push]
+
+jobs:
+  yara-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Run YARA scan
+      uses: docker://yara/yara:latest
+      with:
+        args: |
+          yara -r contains_yes_rule.yar .
+    - name: Display result
+      run: echo "yey"
+      if: success()
