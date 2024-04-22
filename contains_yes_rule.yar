@@ -1,7 +1,7 @@
 rule ContainsYes {
     strings:
         $yes_string = "yes"
-        $nk_string = "no"
+        $no_string = "no"
     condition:
-        $yes_string or $nk_string
+        $yes_string or $no_string
 }
