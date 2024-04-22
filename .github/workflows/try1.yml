@@ -20,7 +20,7 @@ jobs:
       run: sudo apt-get install yara
 
     - name: Run YARA scan
-      run: yara -r try1.yar 
+      run: yara -r try1.yar ./
 
     - name: Display result
       run: echo "yey"
