@@ -2,7 +2,7 @@ import subprocess
 import sys
 
 
-def install_selenium():
+def install_selenium(): 
     try:
         # Use pip to install Selenium
         subprocess.check_call([sys.executable, "-m", "pip", "install", "selenium"])
