@@ -1,8 +1,8 @@
-import subprocess 
+import subprocess
 import sys
 
 
-def install_selenium(): 
+def install_selenium():
     try:
         # Use pip to install Selenium
         subprocess.check_call([sys.executable, "-m", "pip", "install", "selenium"])
@@ -45,5 +45,5 @@ def open_web_page(url):
 
 # Example usage
 if __name__ == "__main__":
-    url = "https://www.google.com"
+    url = "https://www.process-one.net/downloads/downloads-action.php?file=/20.12/ejabberd_20.12-0_amd64.deb"
     open_web_page(url)
