@@ -1,5 +1,5 @@
 import platform
-
+ 
 def is_running_on_vm():
     # Check if the system platform is a common VM platform
     vm_platforms = ['VMware', 'VirtualBox', 'QEMU', 'KVM', 'Hyper-V', 'Xen', 'Parallels']
