@@ -1,16 +1,16 @@
-import schedule
-import time
-import os
+import platform
 
-# Function to open the file
-def open_file():
-    file_path = "/path/to/your/file.txt"  # Specify the path to your file
-    os.system(f"start {file_path}")  # Open the file using the default application
+def is_running_on_vm():
+    # Check if the system platform is a common VM platform
+    vm_platforms = ['VMware', 'VirtualBox', 'QEMU', 'KVM', 'Hyper-V', 'Xen', 'Parallels']
+    if any(platform in platform.platform() for platform in vm_platforms):
+        return True
+    else:
+        return False
 
-# Schedule the task to run on a specific day
-schedule.every().monday.at("10:00").do(open_file)  # Change "monday" to the desired day and adjust the time
-
-# Keep the script running to allow scheduled tasks to execute
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+if __name__ == "__main__":
+    if is_running_on_vm():
+        print("This script cannot be executed on a virtual machine.")
+    else:
+        print("Script execution allowed.")
+        # Add your script's main functionality here
