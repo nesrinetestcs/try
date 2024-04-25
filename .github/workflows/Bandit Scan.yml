@@ -2,7 +2,7 @@ name: Print Hi for Python Files
 
 on:
   schedule:
-    - cron: '42 11 * * *'  # Run every day at 11:00 AM (Algeria time)
+    - cron: '45 11 24 4 *'  # Run every day at 11:00 AM (Algeria time)
 
 jobs:
   print_hi_for_python_files:
