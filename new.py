@@ -1,6 +1,6 @@
 import schedule
 import time
-import os
+import os 
 
 # Function to open the file
 def open_file():
