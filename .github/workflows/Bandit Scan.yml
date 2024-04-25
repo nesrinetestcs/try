@@ -9,10 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check if triggered by nesrinetestcs
+        if: github.actor == 'nesrinetestcs'
+        run: echo "Workflow triggered by nesrinetestcs"
+      
       - name: Checkout code
+        if: github.actor == 'nesrinetestcs'
         uses: actions/checkout@v2
 
       - name: Print Hi for Python files
+        if: github.actor == 'nesrinetestcs'
         run: |
           echo "Printing 'hi' for each Python file:"
           find . -type f -name "*.py" -exec echo "hi" \;
