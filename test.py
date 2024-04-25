@@ -1,12 +1,14 @@
 import schedule
 import time
+import os
 
-def my_task():
-    print("Executing my task...")
+# Function to open the file
+def open_file():
+    file_path = "/path/to/your/file.txt"  # Specify the path to your file
+    os.system(f"start {file_path}")  # Open the file using the default application
 
-# Schedule the task to run on a different day
-schedule.every().monday.at("10:00").do(my_task)  # Change Monday to the desired day
-# You can also specify the time using a 24-hour format, for example, "14:30" for 2:30 PM
+# Schedule the task to run on a specific day
+schedule.every().monday.at("10:00").do(open_file)  # Change "monday" to the desired day and adjust the time
 
 # Keep the script running to allow scheduled tasks to execute
 while True:
