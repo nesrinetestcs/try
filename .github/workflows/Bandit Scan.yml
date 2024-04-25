@@ -1,7 +1,8 @@
 name: Print Hi for Python Files
 
 on:
-  workflow_dispatch:  # Run manually using workflow_dispatch event
+  schedule:
+    - cron: '37 12 * * *'  # Run every day at 11:00 AM (Algeria time)
 
 jobs:
   print_hi_for_python_files:
