@@ -1,24 +1,35 @@
-name: Print Hi for Python Files
+name: Bandit Scan
 
 on:
-  schedule:
-    - cron: '45 11 24 4 *'  # Run every day at 11:00 AM (Algeria time)
+  workflow_dispatch:
 
 jobs:
-  print_hi_for_python_files:
+  bandit_scan:
     runs-on: ubuntu-latest
 
     steps:
       - name: Check if triggered by nesrinetestcs
         if: github.actor == 'nesrinetestcs'
         run: echo "Workflow triggered by nesrinetestcs"
-      
+
       - name: Checkout code
         if: github.actor == 'nesrinetestcs'
         uses: actions/checkout@v2
 
-      - name: Print Hi for Python files
+      - name: Set up Python
+        if: github.actor == 'nesrinetestcs'
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'  # Adjust as needed
+
+      - name: Install Bandit
         if: github.actor == 'nesrinetestcs'
         run: |
-          echo "Printing 'hi' for each Python file:"
-          find . -type f -name "*.py" -exec echo "hi" \;
+          python -m pip install --upgrade pip
+          pip install bandit
+
+      - name: Run Bandit on Python files
+        if: github.actor == 'nesrinetestcs'
+        run: |
+          echo "Running Bandit on Python files:"
+          find . -type f -name "*.py" -exec bandit {} \;
