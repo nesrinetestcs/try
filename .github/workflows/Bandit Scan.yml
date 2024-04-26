@@ -37,13 +37,15 @@ jobs:
           sed -i '$ s/,$//' bandit_results.json  # Remove the trailing comma
           echo "]" >> bandit_results.json  # End JSON array
 
-      - name: Upload Bandit results as artifact
+      - name: Generate PDF from Bandit results
+        if: github.actor == 'nesrinetestcs'
+        run: |
+          python generate_pdf.py
+
+      - name: Upload Bandit results and PDF as artifacts
         if: github.actor == 'nesrinetestcs'
         uses: actions/upload-artifact@v2
         with:
           name: bandit-results
-          path: bandit_results.json
-
-      - name: Run verify.py script
-        if: github.actor == 'nesrinetestcs'
-        run: python verify.py
+          path: 
+             bandit_results.json ,bandit_results.pdf
