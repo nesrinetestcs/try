@@ -1,5 +1,6 @@
 name: Bandit Scan
 
+
 on:
   workflow_dispatch:
 
@@ -32,11 +33,4 @@ jobs:
         if: github.actor == 'nesrinetestcs'
         run: |
           echo "Running Bandit on Python files:"
-          find . -type f -name "*.py" -exec bandit {} \; > bandit_results.txt
-
-      - name: Upload Bandit results as artifact
-        if: github.actor == 'nesrinetestcs'
-        uses: actions/upload-artifact@v2
-        with:
-          name: bandit-results
-          path: bandit_results.txt
+          find . -type f -name "*.py" -exec bandit {} \; > bandit_results.txt 
