@@ -33,7 +33,8 @@ jobs:
         run: |
           echo "Running Bandit on Python files:"
           echo "[" > bandit_results.json  # Start JSON array
-          find . -type f -name "*.py" -exec bandit -f json {} \; >> bandit_results.json  # Append results of each file
+          find . -type f -name "*.py" -exec sh -c 'bandit -f json "{}" && echo ","' \; >> bandit_results.json  # Append results of each file with a comma
+          sed -i '$ s/,$//' bandit_results.json  # Remove the trailing comma
           echo "]" >> bandit_results.json  # End JSON array
 
       - name: Upload Bandit results as artifact
