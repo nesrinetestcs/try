@@ -8,12 +8,13 @@ with open('bandit_results.json', 'r') as file:
 for entry in data:
     # Check if the results section is not empty for the current file
     if entry['results']:
-        file_name = entry['filename']
+        
         found_issue = False
         # Iterate through each result in the current file
         for result in entry['results']:
             # Check if the issue confidence is high or the issue severity is high
             if result.get('issue_confidence') == 'HIGH' or result.get('issue_severity') == 'HIGH':
+                file_name = result['filename']
                 found_issue = True
                 issue_cwe = result['issue_cwe']['link'] if 'issue_cwe' in result else 'N/A'
                 issue_text = result['issue_text']
