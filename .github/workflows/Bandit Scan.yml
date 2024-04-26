@@ -28,6 +28,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install bandit
 
+      - name: Install reportlab
+        if: github.actor == 'nesrinetestcs'
+        run: |
+          pip install reportlab
+
       - name: Run Bandit on Python files
         if: github.actor == 'nesrinetestcs'
         run: |
@@ -37,7 +42,7 @@ jobs:
           sed -i '$ s/,$//' bandit_results.json  # Remove the trailing comma
           echo "]" >> bandit_results.json  # End JSON array
 
-      - name: Generate PDF from Bandit results
+      - name: Convert JSON to PDF
         if: github.actor == 'nesrinetestcs'
         run: |
           python verify.py
@@ -47,5 +52,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: bandit-results
-          path: 
-             bandit_results.json ,bandit_results.pdf
+          path: |
+            bandit_results.json
+            bandit_results.pdf
