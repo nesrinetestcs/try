@@ -32,7 +32,7 @@ jobs:
         if: github.actor == 'nesrinetestcs'
         run: |
           echo "Running Bandit on Python files:"
-          find . -type f -name "*.py" 
+          find . -type f -name "*.py" | while read -r file; do
             echo "Scanning file: $file"
             echo "Scanning file: $file" >> bandit_results.txt  # Append file name to results
             bandit "$file" >> bandit_results.txt  # Append results to file
