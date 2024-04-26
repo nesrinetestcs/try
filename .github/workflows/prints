@@ -1,0 +1,23 @@
+name: Python Print Checker
+
+on:
+
+  workflow_dispatch: # This allows manual triggering of the workflow
+
+jobs:
+  print_checker_job:
+    name: Check Python Files for Print Statements
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Run Print Checker
+        run: |
+          find . -name '*.py' -type f -exec python verify_prints.py {} \;
