@@ -32,7 +32,9 @@ jobs:
         if: github.actor == 'nesrinetestcs'
         run: |
           echo "Running Bandit on Python files:"
-          find . -type f -name "*.py" -exec echo "Scanning file: {}" \; -exec bandit -f json -o bandit_results.json {} \;
+          echo "[" > bandit_results.json  # Start JSON array
+          find . -type f -name "*.py" -exec bandit -f json {} \; >> bandit_results.json  # Append results of each file
+          echo "]" >> bandit_results.json  # End JSON array
 
       - name: Upload Bandit results as artifact
         if: github.actor == 'nesrinetestcs'
