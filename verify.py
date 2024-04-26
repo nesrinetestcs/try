@@ -17,10 +17,11 @@ y_coordinate = 750
 for entry in data:
     # Check if the results section is not empty for the current file
     if entry['results']:
-        file_name = entry['filename']
+       
         found_issue = False
         # Iterate through each result in the current file
-        for result in entry['results']:
+        for result in entry['results']: 
+             file_name = result['filename']
             # Check if the issue confidence is high or the issue severity is high
             if result.get('issue_confidence') == 'HIGH' or result.get('issue_severity') == 'HIGH':
                 found_issue = True
