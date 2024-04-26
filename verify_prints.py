@@ -1,4 +1,5 @@
 import ast
+import sys
 
 def find_print_statements(filename):
     print_statements = []
@@ -24,8 +25,13 @@ def find_print_statements(filename):
 
     return print_statements
 
-filename = 'your_python_file.py'
-print_statements = find_print_statements(filename)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <filename>")
+        sys.exit(1)
+    
+    filename = sys.argv[1]
+    print_statements = find_print_statements(filename)
 
-for function_name, statement in print_statements:
-    print(f"In function '{function_name}': {statement}")
+    for function_name, statement in print_statements:
+        print(f"In function '{function_name}': {statement}")
