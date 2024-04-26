@@ -42,3 +42,7 @@ jobs:
         with:
           name: bandit-results
           path: bandit_results.json
+
+      - name: Run verify.py script
+        if: github.actor == 'nesrinetestcs'
+        run: python verify.py
