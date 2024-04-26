@@ -10,14 +10,15 @@ def extract_prints(file_path):
         for node in ast.walk(tree):
             if isinstance(node, ast.FunctionDef):
                 function_name = node.name
-                if function_name in ['print', 'write', 'display', 'pprint']:
-                    for statement in node.body:
-                        if isinstance(statement, ast.Expr):
-                            if isinstance(statement.value, ast.Call):
-                                call_func = statement.value.func.id
-                                if call_func in ['print', 'write', 'display', 'pprint']:
-                                    print_value = ast.literal_eval(statement.value.args[0])
-                                    prints.append((function_name, print_value))
+                for statement in node.body:
+                    if isinstance(statement, ast.Expr):
+                        if isinstance(statement.value, ast.Call):
+                            call_func = statement.value.func
+                            if isinstance(call_func, ast.Name):
+                                func_name = call_func.id
+                                if func_name in ['print', 'write', 'display', 'pprint']:
+                                    print_value = ast.literal_eval(ast.Str(statement.value.args[0].s))
+                                    prints.append((func_name, print_value))
 
     return prints
 
