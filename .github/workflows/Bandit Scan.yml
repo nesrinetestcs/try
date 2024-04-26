@@ -40,7 +40,7 @@ jobs:
       - name: Generate PDF from Bandit results
         if: github.actor == 'nesrinetestcs'
         run: |
-          python generate_pdf.py
+          python verify.py
 
       - name: Upload Bandit results and PDF as artifacts
         if: github.actor == 'nesrinetestcs'
